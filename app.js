@@ -1,7 +1,7 @@
 // Shared state: one array all members work with
 let tasks = [];
 
-console.log("Welcome to the Team Task Manager project. All changes must go through branches and PRs.");
+console.log("Welcome to the Team Task Manager project.. All changes must go through branches and PRs.");
 
 
 // MEMBER 1: will add a welcome log via a feature branch
