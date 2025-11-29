@@ -9,6 +9,7 @@ console.log("rahish kumar");
 console.log("Team Task Manager app loaded.");
 
 
+console.log("added by pankaj");
 
 // MEMBER 2: implement addTask()
 function addTask() {
@@ -51,7 +52,13 @@ function renderTasks() {
 }
 // MEMBER 4: implement toggleTaskCompleted()
 function toggleTaskCompleted(index) {
-    /* TODO: Member 4 */
+    if (index < 0 || index >= tasks.length) {
+        console.error("Invalid task index:", index);
+        return;
+    }
+
+    tasks[index].completed = !tasks[index].completed;
+    renderTasks();
 }
 
 // MEMBER 5: implement deleteTask()
