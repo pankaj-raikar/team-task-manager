@@ -14,9 +14,38 @@ function addTask() {
 
 // MEMBER 3: implement renderTasks()
 function renderTasks() {
-    /* TODO: Member 3 */
-}
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
 
+    tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+
+        if (task.completed) {
+            li.classList.add("completed");
+        }
+
+        const textSpan = document.createElement("span");
+        textSpan.textContent = task.text;
+        textSpan.className = "task-text";
+
+        textSpan.addEventListener("click", () => {
+            toggleTaskCompleted(index);
+        });
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+        delBtn.className = "delete-btn";
+
+        delBtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            deleteTask(index);
+        });
+
+        li.appendChild(textSpan);
+        li.appendChild(delBtn);
+        list.appendChild(li);
+    });
+}
 // MEMBER 4: implement toggleTaskCompleted()
 function toggleTaskCompleted(index) {
     /* TODO: Member 4 */
