@@ -3,9 +3,11 @@ let tasks = [];
 
 console.log("Welcome to the Team Task Manager project.. All changes must go through branches and PRs.");
 
+console.log("rahish kumar");
 
 // MEMBER 1: will add a welcome log via a feature branch
 console.log("Team Task Manager app loaded.");
+
 
 console.log("added by pankaj");
 
