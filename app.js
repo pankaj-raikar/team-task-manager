@@ -67,6 +67,16 @@ function toggleTaskCompleted(index) {
 
 // MEMBER 5: implement deleteTask()
 function deleteTask(index) {
+if (index < 0 || index >= tasks.length) {
+        console.error("Invalid task index for delete:", index);
+        return;
+    }
+
+    tasks.splice(index, 1);
+    
+    
+    renderTasks();
+
     /* TODO: Member 5 */
 }
 
