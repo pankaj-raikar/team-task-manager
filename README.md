@@ -1,3 +1,8 @@
+Here — properly cleaned and formatted into a **README.md**, same structure preserved, no extra fluff:
+
+---
+
+````md
 # Team Task Manager
 
 Simple browser-based task manager built as a Git collaboration exercise.
@@ -12,32 +17,33 @@ Simple browser-based task manager built as a Git collaboration exercise.
 
 Just open `index.html` in a browser.
 
+---
 
+## 👤 Prem — Implement addTask() (Create Tasks)
 
-👤 Prem — Implement addTask() (Create Tasks)
-Goal
+### Goal
 
-Read text from input.
+- Read text from input.
+- Validate.
+- Add to tasks array.
+- Clear input.
+- Re-render list.
 
-Validate.
+### Step 1 – Update Local Repo & Create Branch
 
-Add to tasks array.
-
-Clear input.
-
-Re-render list.
-
-Step 1 – Update Local Repo & Create Branch
+```sh
 git clone https://github.com/pankaj-raikar/team-task-manager.git
 cd team-task-manager
 git checkout main
 git pull
 git checkout -b feature-add-task
+````
 
-Step 2 – Edit app.js
+### Step 2 – Edit `app.js`
 
-Replace the addTask function:
+Replace the `addTask` function:
 
+```js
 function addTask() {
     const input = document.getElementById("taskInput");
     const text = input.value.trim();
@@ -56,100 +62,83 @@ function addTask() {
     input.value = "";
     renderTasks();
 }
+```
 
-Step 3 – Quick Test
+### Step 3 – Quick Test
 
-Open index.html in the browser (double-click or open via Live Server).
+* Open `index.html` in the browser.
+* Add a task → it won’t display yet (render not implemented).
 
-Type something in the input.
+### Step 4 – Commit & Push
 
-Click Add Task → nothing will show yet because renderTasks() is still not implemented. That’s fine.
-
-Step 4 – Commit & Push
+```sh
 git status
 git add app.js
 git commit -m "Implement addTask to create new tasks"
 git config --global credential.helper store
+```
 
-Generate Token
-1. Go to: 👉 https://github.com/settings/tokens
-2. Click: Generate new token (classic)
-3. Name: Git CLI Access
-4. Select expiry (30 days or 90 days)
-5. Enable permissions:
-✔ repo ✔ workflow (optional)
-1. Click Generate token
-2. Copy the token — you won't see it again.
+#### Generate GitHub Token
 
+1. Go to GitHub Settings → **Developer Settings → Tokens**
+2. Generate new token (classic)
+3. Enable:
+
+   * `repo`
+   * `workflow` (optional)
+4. Copy token.
+
+```sh
 git push -u origin feature-add-task
+```
 
-When it asks:
+Login format:
 
-Username: your-username eg pankaj-raikar
+```
+Username: <your GitHub username>
 Password: <PASTE TOKEN HERE>
-👉 Paste the token (not your password).
+```
 
+### Step 5 – Create Pull Request
 
+* Compare: `feature-add-task` → `main`
+* Title: **Implement addTask()**
+* Merge after review.
 
-Step 5 – Create Pull Request
+### Step 6 – Sync After Merge
 
-On GitHub:
-
-Compare: feature-add-task → main
-
-Title: Implement addTask()
-
-Description: “Adds function to push new tasks into tasks array.”
-
-Create PR.
-
-Leader (Member 1) reviews and merges.
-
-Step 6 – Sync After Merge
-
-After PR is merged:
-
+```sh
 git checkout main
 git pull
+```
 
+---
 
-Member 2 is done.
+## 👤 Sushat Singh — Implement renderTasks() (Display Tasks)
 
-👤 Sushat singh — Implement renderTasks() (Display Tasks)
-Goal
+### Goal
 
-Show tasks in <ul id="taskList">.
+* Show tasks in `<ul id="taskList">`
+* Mark completed tasks.
+* Add delete button.
+* Click text → toggle complete.
+* Click delete → remove task.
 
-Mark completed tasks using .completed class.
+### Step 1 – Checkout Main & Create Branch
 
-Each list item has:
-
-Task text.
-
-Delete button.
-
-Click on text → toggles complete (calls toggleTaskCompleted).
-
-Click delete button → deletes (calls deleteTask).
-
-
-Step 1 – Checkout Main & New Branch
+```sh
 git clone https://github.com/pankaj-raikar/team-task-manager.git
-
 cd team-task-manager
-
 git checkout main
-
 git pull
-
 git checkout -b feature-render-tasks
+```
 
+### Step 2 – Edit `app.js`
 
-Step 2 – Edit app.js
+Replace `renderTasks`:
 
-
-Replace renderTasks:
-
+```js
 function renderTasks() {
     const list = document.getElementById("taskList");
     list.innerHTML = "";
@@ -161,22 +150,18 @@ function renderTasks() {
             li.classList.add("completed");
         }
 
-        // Task text span
         const textSpan = document.createElement("span");
         textSpan.textContent = task.text;
         textSpan.className = "task-text";
 
-        // Click on text toggles completion
         textSpan.addEventListener("click", () => {
             toggleTaskCompleted(index);
         });
 
-        // Delete button
         const delBtn = document.createElement("button");
         delBtn.textContent = "Delete";
         delBtn.className = "delete-btn";
 
-        // Clicking delete should not trigger toggle
         delBtn.addEventListener("click", (event) => {
             event.stopPropagation();
             deleteTask(index);
@@ -187,80 +172,58 @@ function renderTasks() {
         list.appendChild(li);
     });
 }
+```
 
-Step 3 – Test Locally
+### Step 3 – Test
 
+* Tasks now display.
+* Toggle/delete still inactive.
 
-Open index.html.
+### Step 4 – Commit & Push
 
-Add a few tasks → they should now display as plain list items.
-
-Clicking them still won’t toggle yet (Member 4’s job).
-
-Clicking delete won’t do anything yet (Member 5’s job).
-
-Step 4 – Commit & Push
+```sh
 git status
 git add app.js
 git commit -m "Implement renderTasks to display tasks with delete button"
-git config --global credential.helper store
-
-Generate Token
-1. Go to: 👉 https://github.com/settings/tokens
-2. Click: Generate new token (classic)
-3. Name: Git CLI Access
-4. Select expiry (30 days or 90 days)
-5. Enable permissions:
-✔ repo ✔ workflow (optional)
-1. Click Generate token
-2. Copy the token — you won't see it again.
-
-git push -u origin feature-add-task
-
-When it asks:
-
-Username: your-username eg pankaj-raikar
-Password: <PASTE TOKEN HERE>
-👉 Paste the token (not your password).
-
-
 git push -u origin feature-render-tasks
+```
 
-Step 5 – Pull Request
+### Step 5 – Pull Request
 
-On GitHub:
+* PR: `feature-render-tasks` → `main`
+* Leader merges.
 
-PR: feature-render-tasks → main
+### Step 6 – Sync
 
-Title: Implement renderTasks()
-
-Leader merges.
-
-Step 6 – Sync After Merge
+```sh
 git checkout main
 git pull
+```
 
+---
 
-Member 3 done.
+## 👤 Praveen — Implement toggleTaskCompleted() (Mark Done / Undone)
 
-👤 Praveen — Implement toggleTaskCompleted() (Mark Done / Undone)
-Goal
+### Goal
 
-Click on a task text → mark it completed / uncompleted.
+* Clicking task text toggles status.
+* Re-render after toggle.
 
-Re-render list after toggle.
+### Step 1 – Checkout & Branch
 
-Step 1 – Checkout & Branch
+```sh
 git clone https://github.com/pankaj-raikar/team-task-manager.git
 cd team-task-manager
 git checkout main
 git pull
 git checkout -b feature-toggle-completed
+```
 
-Step 2 – Edit app.js
+### Step 2 – Edit `app.js`
 
-Replace toggleTaskCompleted:
+Replace `toggleTaskCompleted`:
 
+```js
 function toggleTaskCompleted(index) {
     if (index < 0 || index >= tasks.length) {
         console.error("Invalid task index:", index);
@@ -270,82 +233,57 @@ function toggleTaskCompleted(index) {
     tasks[index].completed = !tasks[index].completed;
     renderTasks();
 }
+```
 
-Step 3 – Test
+### Step 3 – Test
 
-Open index.html.
+* Click task text → toggles line-through.
 
-Add some tasks.
+### Step 4 – Commit & Push
 
-Click on the task text:
-
-It should toggle line-through style (using .completed class).
-
-Try multiple toggles.
-
-Step 4 – Commit & Push
+```sh
 git status
 git add app.js
 git commit -m "Implement toggleTaskCompleted to mark tasks done/undone"
-
-git config --global credential.helper store
-
-Generate Token
-1. Go to: 👉 https://github.com/settings/tokens
-2. Click: Generate new token (classic)
-3. Name: Git CLI Access
-4. Select expiry (30 days or 90 days)
-5. Enable permissions:
-✔ repo ✔ workflow (optional)
-1. Click Generate token
-2. Copy the token — you won't see it again.
-
-git push -u origin feature-add-task
-
-When it asks:
-
-Username: your-username eg pankaj-raikar
-Password: <PASTE TOKEN HERE>
-👉 Paste the token (not your password).
-
-
 git push -u origin feature-toggle-completed
+```
 
-Step 5 – Pull Request
+### Step 5 – Pull Request
 
-On GitHub:
+* PR: `feature-toggle-completed` → `main`
+* Merge.
 
-PR: feature-toggle-completed → main
+### Step 6 – Sync
 
-Title: Implement toggleTaskCompleted()
-
-Leader merges.
-
-Step 6 – Sync After Merge
+```sh
 git checkout main
 git pull
+```
 
+---
 
-Member 4 done.
+## 👤 Rajat — Implement deleteTask() (Remove Tasks)
 
-👤 Rajat — Implement deleteTask() (Remove Tasks)
-Goal
+### Goal
 
-Clicking the delete button removes that task from tasks.
+* Delete button removes task.
+* Re-render list.
 
-Re-render list.
+### Step 1 – Branch
 
-Step 1 – Checkout & Branch
+```sh
 git clone https://github.com/pankaj-raikar/team-task-manager.git
 cd team-task-manager
 git checkout main
 git pull
 git checkout -b feature-delete-task
+```
 
-Step 2 – Edit app.js
+### Step 2 – Edit `app.js`
 
-Replace deleteTask:
+Replace `deleteTask`:
 
+```js
 function deleteTask(index) {
     if (index < 0 || index >= tasks.length) {
         console.error("Invalid task index for delete:", index);
@@ -355,79 +293,53 @@ function deleteTask(index) {
     tasks.splice(index, 1);
     renderTasks();
 }
+```
 
+### Step 3 – Test
 
-This works with the delete button wiring Member 3 already added.
+* Delete task → item removed.
 
-Step 3 – Test
+### Step 4 – Commit & Push
 
-Open index.html.
-
-Add 3–4 tasks.
-
-Click Delete on the middle one:
-
-That item should disappear.
-
-Check others still behave correctly.
-
-Step 4 – Commit & Push
+```sh
 git status
 git add app.js
 git commit -m "Implement deleteTask to remove tasks by index"
-
-git config --global credential.helper store
-
-Generate Token
-1. Go to: 👉 https://github.com/settings/tokens
-2. Click: Generate new token (classic)
-3. Name: Git CLI Access
-4. Select expiry (30 days or 90 days)
-5. Enable permissions:
-✔ repo ✔ workflow (optional)
-1. Click Generate token
-2. Copy the token — you won't see it again.
-
-git push -u origin feature-add-task
-
-When it asks:
-
-Username: your-username eg pankaj-raikar
-Password: <PASTE TOKEN HERE>
-👉 Paste the token (not your password).
-
-
 git push -u origin feature-delete-task
+```
 
-Step 5 – Pull Request
+### Step 5 – Pull Request
 
-On GitHub:
+* PR → `main`
+* Merge.
 
-PR: feature-delete-task → main
+### Step 6 – Sync
 
-Title: Implement deleteTask()
-
-Leader merges.
-
-Step 6 – Sync After Merge
+```sh
 git checkout main
 git pull
+```
 
+---
 
-Member 5 done.
+## 🔚 Final State (Expected Result)
 
-🔚 Final State (What the App Should Do)
+After all merges:
 
-After all PRs are merged and everyone has pulled:
-
+```sh
 git checkout main
 git pull
+```
 
+Then open `index.html`:
 
-Open index.html:
+* Add task → appears
+* Click task → toggles completed
+* Click delete → removes it
 
-Type a task → click Add Task → appears in list.
+```
 
-Click the text → toggles completed (line-through).
+--- 
 
-Click Delete → removes the task.
+Done.
+```
