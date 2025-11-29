@@ -7,6 +7,8 @@ console.log("Welcome to the Team Task Manager project.. All changes must go thro
 // MEMBER 1: will add a welcome log via a feature branch
 console.log("Team Task Manager app loaded.");
 
+console.log("added by pankaj");
+
 // MEMBER 2: implement addTask()
 function addTask() {
     /* TODO: Member 2 */
