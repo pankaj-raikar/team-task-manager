@@ -135,12 +135,18 @@ Click delete button → deletes (calls deleteTask).
 
 Step 1 – Checkout Main & New Branch
 git clone https://github.com/pankaj-raikar/team-task-manager.git
+
 cd team-task-manager
+
 git checkout main
+
 git pull
+
 git checkout -b feature-render-tasks
 
+
 Step 2 – Edit app.js
+
 
 Replace renderTasks:
 
@@ -183,6 +189,7 @@ function renderTasks() {
 }
 
 Step 3 – Test Locally
+
 
 Open index.html.
 
