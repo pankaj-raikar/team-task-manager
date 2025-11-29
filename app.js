@@ -9,8 +9,12 @@ console.log("rahish kumar");
 console.log("Team Task Manager app loaded.");
 
 console.log("rashish feature");
+console.log("Addded for conflit");
+
 console.log("added by pankaj");
 
+
+console.log("1 conflit");
 // MEMBER 2: implement addTask()
 function addTask() {
     /* TODO: Member 2 */
